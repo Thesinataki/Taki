@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TAKi - طراحی سایت حرفه‌ای و خدمات دیجیتال مارکتینگ">
+    <meta name="keywords" content="طراحی سایت, دیجیتال مارکتینگ, طراحی اپلیکیشن, خدمات سئو">
+    <title>TAKi | طراحی سایت حرفه‌ای</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @font-face {
+            font-family: 'Vazir';
+            src: url('https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/Vazir.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+        body {
+            font-family: 'Vazir', sans-serif;
+            background-color: #000;
+            color: #fff;
+        }
+        .hero {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1516321318423-f06f85e504d3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 80vh;
+        }
+        .service-card {
+            transition: all 0.3s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(220, 38, 38, 0.3);
+        }
+        .btn-red {
+            background: linear-gradient(45deg, #dc2626, #991b1b);
+            transition: all 0.3s ease;
+        }
+        .btn-red:hover {
+            background: linear-gradient(45deg, #000, #1f2937);
+            transform: translateY(-2px);
+        }
+        .team-card {
+            transition: all 0.3s ease;
+        }
+        .team-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 25px rgba(220, 38, 38, 0.3);
+        }
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            right: 0;
+            background-color: #dc2626;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .section-title {
+            position: relative;
+            display: inline-block;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 3px;
+            bottom: -8px;
+            right: 0;
+            background: linear-gradient(90deg, #dc2626, transparent);
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Navigation -->
+    <header class="fixed w-full bg-black bg-opacity-90 z-50 shadow-lg">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-8 space-x-reverse">
+                <a href="#" class="text-2xl font-bold text-red-600">TAKi</a>
+                <nav class="hidden md:flex space-x-6 space-x-reverse">
+                    <a href="#home" class="nav-link text-white hover:text-red-500">صفحه اصلی</a>
+                    <a href="#about" class="nav-link text-white hover:text-red-500">درباره ما</a>
+                    <a href="#services" class="nav-link text-white hover:text-red-500">خدمات</a>
+                    <a href="#contact" class="nav-link text-white hover:text-red-500">تماس با ما</a>
+                </nav>
+            </div>
+            <button class="md:hidden text-white focus:outline-none">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="fixed inset-0 bg-black bg-opacity-90 z-40 hidden" id="mobileMenu">
+        <div class="flex flex-col items-center justify-center h-full space-y-8">
+            <a href="#home" class="text-2xl text-white hover:text-red-500">صفحه اصلی</a>
+            <a href="#about" class="text-2xl text-white hover:text-red-500">درباره ما</a>
+            <a href="#services" class="text-2xl text-white hover:text-red-500">خدمات</a>
+            <a href="#contact" class="text-2xl text-white hover:text-red-500">تماس با ما</a>
+            <button class="absolute top-4 left-4 text-white text-2xl" id="closeMenu">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Home Page -->
+    <section id="home" class="pt-24">
+        <!-- Hero Section -->
+        <div class="hero flex items-center justify-center fade-in">
+            <div class="container mx-auto px-4 text-center">
+                <h1 class="text-4xl md:text-6xl font-bold mb-6 text-white">اینجا جاییست که ایده‌ها زنده می‌شوند</h1>
+                <p class="text-xl md:text-2xl mb-8 text-gray-300">ما در TAKi با ترکیب خلاقیت و تکنولوژی، رویاهای دیجیتال شما را به واقعیت تبدیل می‌کنیم</p>
+                <a href="#contact" class="btn-red text-white py-3 px-8 rounded-full text-lg font-semibold inline-block">شروع کنید</a>
+            </div>
+        </div>
+
+        <!-- Services Preview -->
+        <div class="container mx-auto px-4 py-16">
+            <h2 class="section-title text-3xl font-bold mb-12 text-center">خدمات ما</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="service-card bg-gray-900 rounded-lg p-8 text-center border border-gray-800">
+                    <div class="text-red-500 text-4xl mb-4">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">طراحی وب سایت</h3>
+                    <p class="text-gray-400">طراحی وب سایت‌های مدرن و واکنش‌گرا با آخرین تکنولوژی‌های روز دنیا</p>
+                </div>
+                <div class="service-card bg-gray-900 rounded-lg p-8 text-center border border-gray-800">
+                    <div class="text-red-500 text-4xl mb-4">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">توسعه اپلیکیشن</h3>
+                    <p class="text-gray-400">توسعه اپلیکیشن‌های موبایل با بهترین UX/UI برای پلتفرم‌های مختلف</p>
+                </div>
+                <div class="service-card bg-gray-900 rounded-lg p-8 text-center border border-gray-800">
+                    <div class="text-red-500 text-4xl mb-4">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">دیجیتال مارکتینگ</h3>
+                    <p class="text-gray-400">استراتژی‌های بازاریابی دیجیتال برای رشد کسب و کار شما در فضای آنلاین</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Page -->
+    <section id="about" class="py-16 bg-gradient-to-b from-gray-900 to-black">
+        <div class="container mx-auto px-4">
+            <h2 class="section-title text-3xl font-bold mb-12 text-center">درباره ما</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16">
+                <div class="fade-in">
+                    <h3 class="text-2xl font-bold mb-4 text-red-500">چه کسی هستیم؟</h3>
+                    <p class="text-gray-300 mb-4 leading-relaxed">
+                        TAKi یک استودیوی خلاق دیجیتال است که در سال ۱۳۹۵ با هدف ارائه راهکارهای نوآورانه در فضای دیجیتال تأسیس شد. ما تیمی از متخصصان پرشور و با استعداد هستیم که به دنبال ایجاد تجربیات منحصر به فرد برای کاربران هستیم.
+                    </p>
+                    <p class="text-gray-300 leading-relaxed">
+                        با ترکیب هنر، تکنولوژی و استراتژی، ما به کسب و کارها کمک می‌کنیم تا در دنیای دیجیتال بدرخشند و ارتباط معناداری با مخاطبان خود برقرار کنند.
+                    </p>
+                </div>
+                <div class="fade-in">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="تیم TAKi" class="rounded-lg shadow-xl w-full h-auto">
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+                <div class="bg-gray-900 p-8 rounded-lg border border-gray-800 fade-in">
+                    <h3 class="text-xl font-bold mb-4 text-red-500">ماموریت ما</h3>
+                    <p class="text-gray-300">
+                        ما متعهد به ارائه راهکارهای دیجیتال خلاقانه و مؤثر هستیم که به کسب و کارها کمک می‌کند تا به اهداف خود برسند و در بازار رقابتی امروز متمایز شوند.
+                    </p>
+                </div>
+                <div class="bg-gray-900 p-8 rounded-lg border border-gray-800 fade-in">
+                    <h3 class="text-xl font-bold mb-4 text-red-500">چشم انداز ما</h3>
+                    <p class="text-gray-300">
+                        ما می‌خواهیم به عنوان یک شرکت پیشرو در زمینه طراحی و توسعه دیجیتال شناخته شویم که با نوآوری و کیفیت بی‌نظیر، استانداردهای صنعت را ارتقا می‌دهد.
+                    </p>
+                </div>
+            </div>
+
+            <h3 class="text-2xl font-bold mb-8 text-center">اعضای تیم</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="team-card bg-gray-900 rounded-lg overflow-hidden border border-gray-800 fade-in">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="رضا محمدی" class="w-full h-64 object-cover">
+                    <div class="p-4">
+                        <h4 class="font-bold text-lg">رضا محمدی</h4>
+                        <p class="text-red-500 text-sm">مدیرعامل و بنیانگذار</p>
+                    </div>
+                </div>
+                <div class="team-card bg-gray-900 rounded-lg overflow-hidden border border-gray-800 fade-in">
+                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="نرگس حسینی" class="w-full h-64 object-cover">
+                    <div class="p-4">
+                        <h4 class="font-bold text-lg">نرگس حسینی</h4>
+                        <p class="text-red-500 text-sm">طراح ارشد UI/UX</p>
+                    </div>
+                </div>
+                <div class="team-card bg-gray-900 rounded-lg overflow-hidden border border-gray-800 fade-in">
+                    <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="امیر علیزاده" class="w-full h-64 object-cover">
+                    <div class="p-4">
+                        <h4 class="font-bold text-lg">امیر علیزاده</h4>
+                        <p class="text-red-500 text-sm">توسعه دهنده ارشد</p>
+                    </div>
+                </div>
+                <div class="team-card bg-gray-900 rounded-lg overflow-hidden border border-gray-800 fade-in">
+                    <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="سارا رضوی" class="w-full h-64 object-cover">
+                    <div class="p-4">
+                        <h4 class="font-bold text-lg">سارا رضوی</h4>
+                        <p class="text-red-500 text-sm">متخصص دیجیتال مارکتینگ</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Page -->
+    <section id="services" class="py-16 bg-black">
+        <div class="container mx-auto px-4">
+            <h2 class="section-title text-3xl font-bold mb-12 text-center">خدمات تخصصی ما</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="service-card bg-gray-900 rounded-lg overflow-hidden border border-gray-800 fade-in">
+                    <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1364&q=80" alt="طراحی وب سایت" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">طراحی وب سایت سفارشی</h3>
+                        <p class="text-gray-400 mb-4">طراحی وب سایت‌های منحصر به فرد با توجه به نیازهای خاص کسب و کار شما و مخاطبان هدف</p>
+                        <a href="#" class="btn-red text-white py-2 px-6 rounded-full text-sm font-semibold inline-block">بیشتر بدانید</a>
+                    </div>
+                </div>
+                <div class="service-card bg-gray-900 rounded-lg overflow-hidden border border-gray-800 fade-in">
+                    <img src="https://images.unsplash.com/photo-1555774698-0f77e70f5b1e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="توسعه اپلیکیشن موبایل" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">توسعه اپلیکیشن موبایل</h3>
+                        <p class="text-gray-400 mb-4">توسعه اپلیکیشن‌های بومی و هیبریدی برای iOS و Android با بهترین عملکرد</p>
+                        <a href="#" class="btn-red text-white py-2 px-6 rounded-full text-sm font-semibold inline-block">بیشتر بدانید</a>
+                    </div>
+                </div>
+                <div class="service-card bg-gray-900 rounded-lg overflow-hidden border border-gray-800 fade-in">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1415&q=80" alt="بهینه سازی موتورهای جستجو" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">بهینه سازی موتورهای جستجو (SEO)</h3>
+                        <p class="text-gray-400 mb-4">بهبود رتبه سایت شما در نتایج جستجو و افزایش ترافیک ارگانیک</p>
+                        <a href="#" class="btn-red text-white py-2 px-6 rounded-full text-sm font-semibold inline-block">بیشتر بدانید</a>
+                    </div>
+                </div>
+                <div class="service-card bg-gray-900 rounded-lg overflow-hidden border border-gray-800 fade-in">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="مدیریت شبکه‌های اجتماعی" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">مدیریت شبکه‌های اجتماعی</h3>
+                        <p class="text-gray-400 mb-4">استراتژی‌های مدیریت و رشد شبکه‌های اجتماعی برای افزایش تعامل و فروش</p>
+                        <a href="#" class="btn-red text-white py-2 px-6 rounded-full text-sm font-semibold inline-block">بیشتر بدانید</a>
+                    </div>
+                </div>
+                <div class="service-card bg-gray-900 rounded-lg overflow-hidden border border-gray-800 fade-in">
+                    <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="طراحی برند و هویت بصری" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">طراحی برند و هویت بصری</h3>
+                        <p class="text-gray-400 mb-4">خلاص هویت بصری منحصر به فرد برای برند شما که در ذهن مخاطب ماندگار شود</p>
+                        <a href="#" class="btn-red text-white py-2 px-6 rounded-full text-sm font-semibold inline-block">بیشتر بدانید</a>
+                    </div>
+                </div>
+                <div class="service-card bg-gray-900 rounded-lg overflow-hidden border border-gray-800 fade-in">
+                    <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="مشاوره دیجیتال مارکتینگ" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">مشاوره دیجیتال مارکتینگ</h3>
+                        <p class="text-gray-400 mb-4">ارائه راهکارهای استراتژیک برای رشد کسب و کار شما در فضای دیجیتال</p>
+                        <a href="#" class="btn-red text-white py-2 px-6 rounded-full text-sm font-semibold inline-block">بیشتر بدانید</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Us Page -->
+    <section id="contact" class="py-16 bg-gradient-to-b from-black to-gray-900">
+        <div class="container mx-auto px-4">
+            <h2 class="section-title text-3xl font-bold mb-12 text-center">تماس با ما</h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div class="fade-in">
+                    <h3 class="text-2xl font-bold mb-6 text-red-500">فرم تماس</h3>
+                    <form class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-300 mb-1">نام کامل</label>
+                            <input type="text" id="name" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-red-500">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-300 mb-1">آدرس ایمیل</label>
+                            <input type="email" id="email" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-red-500">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-300 mb-1">پیام شما</label>
+                            <textarea id="message" rows="5" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-red-500"></textarea>
+                        </div>
+                        <button type="submit" class="btn-red text-white py-3 px-8 rounded-full text-lg font-semibold w-full">ارسال پیام</button>
+                    </form>
+                </div>
+                
+                <div class="fade-in">
+                    <h3 class="text-2xl font-bold mb-6 text-red-500">اطلاعات تماس</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-start space-x-4 space-x-reverse">
+                            <div class="text-red-500 text-xl mt-1">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">آدرس دفتر</h4>
+                                <p class="text-gray-400">تهران، خیابان ولیعصر، کوچه فلان، پلاک ۱۲۳</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4 space-x-reverse">
+                            <div class="text-red-500 text-xl mt-1">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">تلفن تماس</h4>
+                                <p class="text-gray-400">۰۲۱-۱۲۳۴۵۶۷۸</p>
+                                <p class="text-gray-400">۰۹۱۲-۳۴۵-۶۷۸۹</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4 space-x-reverse">
+                            <div class="text-red-500 text-xl mt-1">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">ایمیل</h4>
+                                <p class="text-gray-400">info@taki.com</p>
+                                <p class="text-gray-400">support@taki.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4 space-x-reverse">
+                            <div class="text-red-500 text-xl mt-1">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">ساعات کاری</h4>
+                                <p class="text-gray-400">شنبه تا چهارشنبه: ۹ صبح تا ۵ بعدازظهر</p>
+                                <p class="text-gray-400">پنجشنبه: ۹ صبح تا ۱ بعدازظهر</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <h4 class="font-bold text-lg mb-4">ما را در شبکه‌های اجتماعی دنبال کنید</h4>
+                        <div class="flex space-x-4 space-x-reverse">
+                            <a href="#" class="text-gray-400 hover:text-red-500 text-xl"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="text-gray-400 hover:text-red-500 text-xl"><i class="fab fa-telegram"></i></a>
+                            <a href="#" class="text-gray-400 hover:text-red-500 text-xl"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="text-gray-400 hover:text-red-500 text-xl"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-16 rounded-lg overflow-hidden fade-in">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3239.869860785028!2d51.38882031527057!3d35.68919798018982!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8e0108a5c5fae5%3A0x7f1c6f0e3b4f4b0!2sTehran%2C%20Iran!5e0!3m2!1sen!2sus!4v1620000000000!5m2!1sen!2sus" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" class="w-full"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black py-12 border-t border-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-white">TAKi</h3>
+                    <p class="text-gray-400">ما با ترکیب خلاقیت و تکنولوژی، رویاهای دیجیتال شما را به واقعیت تبدیل می‌کنیم.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4 text-white">لینک‌های سریع</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-red-500">صفحه اصلی</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-red-500">درباره ما</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-red-500">خدمات</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-red-500">تماس با ما</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4 text-white">خدمات</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-red-500">طراحی وب سایت</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-red-500">توسعه اپلیکیشن</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-red-500">دیجیتال مارکتینگ</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-red-500">سئو و بهینه‌سازی</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4 text-white">خبرنامه</h4>
+                    <p class="text-gray-400 mb-4">برای دریافت آخرین اخبار و تخفیف‌ها عضو شوید</p>
+                    <div class="flex">
+                        <input type="email" placeholder="آدرس ایمیل" class="bg-gray-800 text-white px-4 py-2 rounded-r-lg focus:outline-none w-full">
+                        <button class="bg-red-600 text-white px-4 py-2 rounded-l-lg hover:bg-red-700 transition">عضویت</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm">© ۱۴۰۲ تمام حقوق برای TAKi محفوظ است.</p>
+                <div class="flex space-x-6 space-x-reverse mt-4 md:mt-0">
+                    <a href="#" class="text-gray-400 hover:text-red-500"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-red-500"><i class="fab fa-telegram"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-red-500"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-red-500"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuToggle = document.querySelector('button[class*="md:hidden"]');
+        const closeMenu = document.getElementById('closeMenu');
+        
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        });
+        
+        closeMenu.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                if (this.getAttribute('href') !== '#') {
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+                
+                // Close mobile menu if open
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+        
+        // Add fade-in animation when elements come into view
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const fadeInObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        fadeElements.forEach(element => {
+            element.style.opacity = '0';
+            fadeInObserver.observe(element);
+        });
+    </script>
+</body>
+</html>
