@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Sina Taki - Upload Center</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .floating {
+            animation: float 4s ease-in-out infinite;
+        }
+        .file-icon {
+            transition: all 0.3s ease;
+        }
+        .file-icon:hover {
+            transform: scale(1.1) rotate(5deg);
+            filter: drop-shadow(0 5px 15px rgba(255, 105, 180, 0.5));
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #450a0a 0%, #7f1d1d 25%, #991b1b 50%, #b91c1c 75%, #dc2626 100%);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .upload-area {
+            backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.15);
+            transition: all 0.3s ease;
+        }
+        .upload-area:hover {
+            background-color: rgba(255, 255, 255, 0.25);
+        }
+        .upload-area.drag-over {
+            background-color: rgba(255, 255, 255, 0.35);
+            transform: scale(1.02);
+        }
+        .magic-sparkle {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body class="min-h-screen gradient-bg text-white font-sans overflow-x-hidden">
+    <div id="sparkles-container"></div>
+
+    <header class="py-8 text-center">
+        <h1 class="text-5xl md:text-7xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-red-600 to-red-800">
+            The Sina Taki
+        </h1>
+        <p class="text-xl md:text-2xl opacity-90">Magical Upload Portal</p>
+    </header>
+
+    <main class="container mx-auto px-4 max-w-4xl">
+        <div class="upload-area rounded-3xl border-2 border-dashed border-white/30 p-8 md:p-12 text-center relative overflow-hidden transition-all duration-300 mb-12"
+             id="dropZone">
+            <div class="absolute inset-0 rounded-3xl border-4 border-transparent pointer-events-none transition-all duration-300" id="dropBorder"></div>
+            
+            <div class="floating mb-8">
+                <i class="fas fa-cloud-upload-alt text-6xl md:text-8xl opacity-80"></i>
+            </div>
+            
+            <h2 class="text-2xl md:text-3xl font-bold mb-4">Drag & Drop Your Files Here</h2>
+            <p class="text-lg opacity-80 mb-8">Or click below to browse your magical collection</p>
+            
+            <input type="file" id="fileInput" class="hidden" multiple>
+            <button onclick="document.getElementById('fileInput').click()" 
+                    class="px-8 py-3 bg-red-900/50 hover:bg-red-900/70 backdrop-blur-md rounded-full font-bold text-lg transition-all duration-300 hover:scale-105 border-2 border-red-700/50 hover:border-red-700/70">
+                <i class="fas fa-wand-sparkles mr-2"></i> Choose Files
+            </button>
+            
+            <div class="mt-8 text-sm opacity-70">
+                <p>Supported spells: PNG, JPG, GIF, PDF, MP3, MP4</p>
+                <p>Max file size: 25MB</p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4" id="filePreviews">
+            <!-- File previews will appear here -->
+        </div>
+
+        <div class="text-center mt-12" id="uploadButtonContainer" style="display: none;">
+            <button id="uploadButton" class="px-10 py-4 bg-gradient-to-r from-red-700 to-red-900 rounded-full font-bold text-xl hover:from-red-800 hover:to-red-950 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                <i class="fas fa-magic mr-2"></i> Cast Upload Spell
+            </button>
+        </div>
+    </main>
+
+    <footer class="py-8 text-center text-sm opacity-70 mt-12">
+        <p>© 2023 The Sina Taki - All magic reserved</p>
+    </footer>
+
+    <script>
+        // Create magic sparkles on mouse move
+        document.addEventListener('mousemove', function(e) {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'magic-sparkle';
+            sparkle.style.left = e.pageX + 'px';
+            sparkle.style.top = e.pageY + 'px';
+            sparkle.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
+            
+            document.getElementById('sparkles-container').appendChild(sparkle);
+            
+            // Animate sparkle
+            sparkle.animate([
+                { transform: 'scale(1)', opacity: 1 },
+                { transform: 'scale(3)', opacity: 0 }
+            ], {
+                duration: 1000,
+                easing: 'cubic-bezier(0.25, 1, 0.5, 1)'
+            });
+            
+            // Remove sparkle after animation
+            setTimeout(() => {
+                sparkle.remove();
+            }, 1000);
+        });
+
+        // Drag and drop functionality
+        const dropZone = document.getElementById('dropZone');
+        const fileInput = document.getElementById('fileInput');
+        const dropBorder = document.getElementById('dropBorder');
+        const filePreviews = document.getElementById('filePreviews');
+        const uploadButtonContainer = document.getElementById('uploadButtonContainer');
+        
+        let files = [];
+        
+        // Prevent default drag behaviors
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            dropZone.addEventListener(eventName, preventDefaults, false);
+            document.body.addEventListener(eventName, preventDefaults, false);
+        });
+        
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+        
+        // Highlight drop zone when item is dragged over it
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropZone.addEventListener(eventName, highlight, false);
+        });
+        
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropZone.addEventListener(eventName, unhighlight, false);
+        });
+        
+        function highlight() {
+            dropZone.classList.add('drag-over');
+            dropBorder.style.borderColor = 'rgba(255, 255, 255, 0.7)';
+        }
+        
+        function unhighlight() {
+            dropZone.classList.remove('drag-over');
+            dropBorder.style.borderColor = 'transparent';
+        }
+        
+        // Handle dropped files
+        dropZone.addEventListener('drop', handleDrop, false);
+        
+        function handleDrop(e) {
+            const dt = e.dataTransfer;
+            files = dt.files;
+            handleFiles(files);
+        }
+        
+        // Handle selected files from file input
+        fileInput.addEventListener('change', function() {
+            files = this.files;
+            handleFiles(files);
+        });
+        
+        // Process files and create previews
+        function handleFiles(files) {
+            filePreviews.innerHTML = '';
+            
+            if (files.length > 0) {
+                uploadButtonContainer.style.display = 'block';
+            } else {
+                uploadButtonContainer.style.display = 'none';
+            }
+            
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                previewFile(file);
+            }
+        }
+        
+        // Create file preview
+        function previewFile(file) {
+            const reader = new FileReader();
+            const fileType = file.type.split('/')[0];
+            const fileExt = file.name.split('.').pop().toLowerCase();
+            
+            reader.onload = function(e) {
+                const preview = document.createElement('div');
+                preview.className = 'file-icon bg-white/10 rounded-xl p-4 text-center cursor-pointer hover:shadow-lg transition-all duration-300';
+                
+                let iconClass = 'fas fa-file';
+                let previewContent = '';
+                
+                if (fileType === 'image') {
+                    iconClass = 'fas fa-image';
+                    previewContent = `<img src="${e.target.result}" class="w-full h-24 object-cover rounded-lg mb-2" alt="Preview">`;
+                } else if (fileType === 'audio') {
+                    iconClass = 'fas fa-music';
+                } else if (fileType === 'video') {
+                    iconClass = 'fas fa-video';
+                } else if (fileExt === 'pdf') {
+                    iconClass = 'fas fa-file-pdf';
+                } else if (['doc', 'docx'].includes(fileExt)) {
+                    iconClass = 'fas fa-file-word';
+                } else if (['xls', 'xlsx'].includes(fileExt)) {
+                    iconClass = 'fas fa-file-excel';
+                } else if (['zip', 'rar'].includes(fileExt)) {
+                    iconClass = 'fas fa-file-archive';
+                }
+                
+                preview.innerHTML = `
+                    ${previewContent || `<i class="${iconClass} text-4xl mb-2"></i>`}
+                    <div class="text-sm font-medium truncate">${file.name}</div>
+                    <div class="text-xs opacity-70">${formatFileSize(file.size)}</div>
+                `;
+                
+                filePreviews.appendChild(preview);
+            };
+            
+            if (file.type.match('image.*')) {
+                reader.readAsDataURL(file);
+            } else {
+                reader.readAsDataURL(new Blob([''], { type: 'text/plain' }));
+            }
+        }
+        
+        // Format file size
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+        
+        // Upload button functionality
+        document.getElementById('uploadButton').addEventListener('click', function() {
+            if (files.length === 0) return;
+            
+            // Simulate upload progress
+            const button = this;
+            const originalText = button.innerHTML;
+            button.disabled = true;
+            button.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Casting Spell...';
+            
+            setTimeout(() => {
+                button.innerHTML = '<i class="fas fa-check mr-2"></i> Upload Complete!';
+                
+                // Show success message
+                const successMsg = document.createElement('div');
+                successMsg.className = 'fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg animate-bounce';
+                successMsg.innerHTML = '<i class="fas fa-check-circle mr-2"></i> Your files have been magically uploaded!';
+                document.body.appendChild(successMsg);
+                
+                setTimeout(() => {
+                    successMsg.remove();
+                    button.innerHTML = originalText;
+                    button.disabled = false;
+                    files = [];
+                    filePreviews.innerHTML = '';
+                    uploadButtonContainer.style.display = 'none';
+                    fileInput.value = '';
+                }, 3000);
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
