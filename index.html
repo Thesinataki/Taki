@@ -17,8 +17,7 @@
       <a href="blog.html">بلاگ</a>
       <a href="contact.html">تماس با ما</a>
       <a href="profile.html">پروفایل</a>
-      <a href="cart.html">سبد خرید (<span id="cart-count">0</span>)</a>
-      <button id="lang-toggle">EN</button>
+      <a href="cart.html">سبد خرید (0)</a>
     </nav>
   </div>
 </header>
@@ -32,7 +31,27 @@
 
   <section class="featured">
     <h3>محصولات پیشنهادی</h3>
-    <div class="grid" id="featured-list"></div>
+    <div class="grid">
+      <!-- محصولات ثابت بدون JS -->
+      <div class="card">
+        <h4>ساعت هوشمند نمونه</h4>
+        <img src="assets/images/product1.svg" alt="">
+        <p>1,200,000 تومان</p>
+        <a class="btn" href="single.html">مشاهده</a>
+      </div>
+      <div class="card">
+        <h4>هدفون بی‌سیم</h4>
+        <img src="assets/images/product2.svg" alt="">
+        <p>650,000 تومان</p>
+        <a class="btn" href="single.html">مشاهده</a>
+      </div>
+      <div class="card">
+        <h4>کیف رودوشی</h4>
+        <img src="assets/images/product3.svg" alt="">
+        <p>420,000 تومان</p>
+        <a class="btn" href="single.html">مشاهده</a>
+      </div>
+    </div>
   </section>
 
   <section class="news">
@@ -54,7 +73,5 @@
     </nav>
   </div>
 </footer>
-
-<script src="assets/js/app.js"></script>
 </body>
 </html>
