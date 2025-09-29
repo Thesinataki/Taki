@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>سبد خرید</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <h1 class="logo"><a href="index.html">فروشگاه تمرینی</a></h1>
+    <nav class="main-nav">
+      <a href="index.html">خانه</a>
+      <a href="shop.html">فروشگاه</a>
+      <a href="about.html">درباره ما</a>
+      <a href="blog.html">بلاگ</a>
+      <a href="contact.html">تماس با ما</a>
+      <a href="profile.html">پروفایل</a>
+      <a href="cart.html">سبد خرید (<span id="cart-count">0</span>)</a>
+      <button id="lang-toggle">EN</button>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <h2>سبد خرید شما</h2>
+  <div id="cart-items"></div>
+  <div class="cart-actions">
+    <label>کد تخفیف: <input id="coupon" placeholder="کد را وارد کنید"></label>
+    <button id="apply-coupon" class="btn">اعمال</button>
+    <button id="checkout" class="btn">نهایی‌سازی سفارش (شبیه‌سازی پرداخت)</button>
+  </div>
+  <div id="cart-summary"></div>
+</main>
+
+<footer class="site-footer">
+  <div class="container"><p>© 2025 فروشگاه تمرینی</p></div>
+</footer>
+
+<script src="assets/js/app.js"></script>
+</body>
+</html>
